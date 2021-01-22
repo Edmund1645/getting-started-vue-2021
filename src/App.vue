@@ -1,19 +1,40 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>Todo App</h1>
+    <input type="text" v-model="todo" /> <button @click="addTodo">Add Task</button>
+    <hr />
+    <br />
+    <br />
+    <ul>
+      <li v-for="(task, index) in todos" v-bind:key="index">
+        <span>{{ task.toUpperCase() }}</span>
+        <button @click="deleteTask(task)">delete</button>
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  data() {
+    return {
+      todo: '',
+      todos: [],
+    };
+  },
+  methods: {
+    addTodo() {
+      if (this.todo.length > 0) {
+        this.todos.push(this.todo);
+      }
+      this.todo = '';
+    },
+    deleteTask(task) {
+      this.todos = this.todos.filter((item) => item !== task);
+    },
+  },
+};
 </script>
 
 <style>
