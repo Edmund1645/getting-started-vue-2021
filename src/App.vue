@@ -5,16 +5,12 @@
     <hr />
     <br />
     <br />
-    <ul>
-      <li v-for="(task, index) in todos" v-bind:key="index">
-        <span>{{ task.toUpperCase() }}</span>
-        <button @click="deleteTask(task)">delete</button>
-      </li>
-    </ul>
+    <TaskList v-bind:todos="todos"></TaskList>
   </div>
 </template>
 
 <script>
+import TaskList from './components/TaskList';
 export default {
   name: 'App',
   data() {
@@ -23,15 +19,15 @@ export default {
       todos: [],
     };
   },
+  components: {
+    TaskList,
+  },
   methods: {
     addTodo() {
       if (this.todo.length > 0) {
         this.todos.push(this.todo);
       }
       this.todo = '';
-    },
-    deleteTask(task) {
-      this.todos = this.todos.filter((item) => item !== task);
     },
   },
 };
