@@ -1,5 +1,8 @@
 # todo-app
 
+## Slide link
+- [click this like to view the slides](https://slides.com/edmund1645/deck)
+
 ## Project setup
 ```
 npm install
